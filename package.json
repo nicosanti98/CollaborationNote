@@ -4,7 +4,7 @@
   "description": "Yjs ❤ Atlaskit",
   "scripts": {
     "dist": "webpack --mode=production",
-    "start": "node server.js"
+    "start": "node server.js",
     "build": "webpack serve --open --open-page login.html",
     "heroku-postbuild": "npm run build"
   },
