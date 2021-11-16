@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "Yjs ❤ Atlaskit",
   "scripts": {
-    "dist": "webpack --mode=production",
-    "start": "webpack serve --open --open-page login.html"
+    "build": "webpack --mode=production",
+    "dist": "webpack serve", 
+    "start": "node server.js"
   },
   "author": "Kevin Jahns <kevin.jahns@pm.me>",
   "license": "UNLICENSE",
