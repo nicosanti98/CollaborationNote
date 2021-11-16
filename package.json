@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Yjs ❤ Atlaskit",
   "scripts": {
-    "dev-server": "webpack-dev-server --open"
+    "dev-server": "webpack-dev-server --open",
     "start": "node server.js",
     "build": "webpack -p",
     "heroku-postbuild": "npm run build"
