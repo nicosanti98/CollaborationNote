@@ -8,13 +8,12 @@ module.exports = {
   },
   output: {
     globalObject: 'self',
-    path: path.resolve(__dirname, './dist/'),
-    filename: '[name].bundle.js',
-    publicPath: '/codemirror/dist/'
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'codemirror.bundle.js',
   },
   devServer: {
     contentBase: path.join(__dirname),
     compress: true,
-    publicPath: 'https://collaborationnote.herokuapp.com/dist/'
+    publicPath: '/dist/'
   }
 }
