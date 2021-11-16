@@ -5,6 +5,7 @@
   "scripts": {
     "dist": "webpack --mode=production",
     "build": "webpack serve --open --open-page login.html"
+    "postinstall": "npm run build-dev" 
   },
   "author": "Kevin Jahns <kevin.jahns@pm.me>",
   "license": "UNLICENSE",
