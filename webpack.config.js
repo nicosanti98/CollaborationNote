@@ -4,11 +4,11 @@ module.exports = {
   mode: 'development',
   devtool: 'source-map',
   entry: {
-    codemirror: 'codemirror.js'
+    codemirror: './codemirror.js'
   },
   output: {
     globalObject: 'self',
-    path: path.resolve(__dirname, './dist/'),
+    path: path.resolve(__dirname, '/dist/'),
     filename: '[name].bundle.js',
     publicPath: '/codemirror/dist/'
   },
