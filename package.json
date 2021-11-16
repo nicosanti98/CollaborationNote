@@ -5,7 +5,8 @@
   "scripts": {
     "dist": "webpack --mode=production",
     "start": "node server.js",
-    "build": "webpack serve --open --open-page login.html"
+    "build": "webpack serve --open --open-page login.html",
+    "heroku-postbuild": "npm run build"
   },
   "author": "Kevin Jahns <kevin.jahns@pm.me>",
   "license": "UNLICENSE",
