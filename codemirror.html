@@ -65,6 +65,9 @@
     <br />
 
     <br>
+    <textarea id="title" onclick="(document.getElementById('title').value == 'Titolo della nota') ? document.getElementById('title').value = '' : null"
+              onblur="(document.getElementById('title').value == '') ? document.getElementById('title').value = 'Titolo della nota' : null"
+              style="border: 2px solid #ccc; width:100%">Titolo della nota</textarea>
 </body>
-<script type="text/javascript" src="/dist/codemirror.bundle.js" async></script>
+<script type="text/javascript" src="dist/codemirror.bundle.js" async></script>
 </html>

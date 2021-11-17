@@ -24,6 +24,7 @@ window.addEventListener('load', async () => {
     )
     const ytext = ydoc.getText('codemirror')
     const editorContainer = document.createElement('div')
+    editorContainer.style = "border: 2px solid #ccc; width: 100%"
     editorContainer.setAttribute('id', 'editor')
     document.body.insertBefore(editorContainer, null)
 
@@ -85,7 +86,6 @@ window.addEventListener('load', async () => {
         response = JSON.parse(response);
         let notelist = document.getElementById("noteslist");
         for (let i = 0; i < response.items.length; i++) {
-            console.log("PORVA");
             let div = document.createElement('div');
             let button = document.createElement('input');
             button.type = "radio";
@@ -113,6 +113,7 @@ window.addEventListener('load', async () => {
             else {
                 //Carico il contenuto della nota all'interno dell'editor
                 editor.setValue(response.items[itemtoload].body);
+                document.getElementById('title').value = response.items[itemtoload].title; 
             }
             
         })
@@ -121,20 +122,42 @@ window.addEventListener('load', async () => {
         const savebutton = document.getElementById('btnSave');
         btnSave.addEventListener("click", async() => {
             let res = await new Promise(resolve => {
-                let itemtoload = document.querySelector("input[name=select]:checked").id
-                let newValue = JSON.stringify({ 'body': editor.getValue() });
+                let itemtoload = document.querySelector("input[name=select]:checked") == null ? -1 : document.querySelector("input[name=select]:checked").id
 
-                var xhr = new XMLHttpRequest();
-                xhr.open("PUT", "http://localhost:41184/notes/" + response.items[itemtoload].id + "?token=" + params.token, true);
-                xhr.onload = function (e) {
-                    resolve(xhr.response);
-                    alert("Aggiornamento avvenuto con successo")
-                };
-                xhr.onerror = function () {
-                    resolve(undefined);
-                    console.error("** An error occurred during the XMLHttpRequest");
-                };
-                xhr.send(newValue);
+                //In questo caso la nota è nuova e va salvata
+                if (itemtoload == -1) {
+
+                    let newValue = JSON.stringify({ 'body': editor.getValue(), 'title': document.getElementById('title').value });
+
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("POST", "http://localhost:41184/notes/?token=" + params.token, true);
+                    xhr.onload = function (e) {
+                        resolve(xhr.response);
+                        alert("Aggiornamento avvenuto con successo")
+                    };
+                    xhr.onerror = function () {
+                        resolve(undefined);
+                        console.error("** An error occurred during the XMLHttpRequest");
+                    };
+                    xhr.send(newValue);
+
+                }
+                else {
+                    let newValue = JSON.stringify({ 'body': editor.getValue(), 'title': document.getElementById('title').value });
+
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("PUT", "http://localhost:41184/notes/" + response.items[itemtoload].id + "?token=" + params.token, true);
+                    xhr.onload = function (e) {
+                        resolve(xhr.response);
+                        alert("Aggiornamento avvenuto con successo")
+                    };
+                    xhr.onerror = function () {
+                        resolve(undefined);
+                        console.error("** An error occurred during the XMLHttpRequest");
+                    };
+                    xhr.send(newValue);
+                }
+                    
                
             })
             res = JSON.parse(res);
