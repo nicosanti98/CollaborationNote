@@ -12,6 +12,7 @@ const urlSearchParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlSearchParams.entries());
 var username = params.username; 
 
+
 window.addEventListener('load', async () => {
     var logintime = new Date();
     document.getElementById('room').innerText = "Stai collaborando nella stanza: " + params.room;

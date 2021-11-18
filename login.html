@@ -46,7 +46,7 @@
     <div class="login-form">
         <h1>Login Form</h1>
         <form action="javascript:" onsubmit="redirect()">
-            <input type="text" name="username" id ="room" placeholder="Nome Stanza" required>
+            <input type="text" name="username" id="room" placeholder="Nome Stanza" required>
             <input type="text" id="username" placeholder="Username" required />
             <input type="text" name="accesstoken" id="accesstoken" placeholder="Joplin Auth Token">
 
@@ -56,14 +56,16 @@
             <input type="submit" />
         </form>
     </div>
+    
 </body>
 
 <script>
     function redirect() {
         //
+
         if (document.getElementById("accesstoken").value == "") {
             console.log("Access vuoto");
-            window.location.href = "codemirror.html?room=" + document.getElementById('room').value + "&username=" + document.getElementById('username').value;
+            window.location.href = "codemirror.html?room=" + document.getElementById('room').value + "&username=" + document.getElementById('username').value; 
         }
         else {
 
