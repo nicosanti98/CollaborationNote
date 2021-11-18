@@ -4,7 +4,7 @@
   "description": "Yjs ❤ Atlaskit",
   "scripts": {
     "build": "webpack --mode=production",
-    "dist": "webpack serve", 
+    "dist": "webpack serve",
     "start": "node server.js"
   },
   "author": "Kevin Jahns <kevin.jahns@pm.me>",
@@ -18,7 +18,7 @@
   },
   "devDependencies": {
     "serve": "^11.3.2",
-    "webpack": "^5.38.1",
+    "webpack": "^5.64.1",
     "webpack-cli": "^4.7.0",
     "webpack-dev-server": "^3.11.2"
   }
