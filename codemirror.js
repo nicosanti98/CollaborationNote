@@ -7,18 +7,21 @@ import { WebrtcProvider } from 'y-webrtc'
 import { CodemirrorBinding } from 'y-codemirror'
 import 'codemirror/mode/markdown/markdown.js'
 
-
+//Prendo i parametri dell'URL da cui si arriva
 const urlSearchParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlSearchParams.entries());
 var username = params.username; 
 
 
+//Al caricamento della pagina vengono inseriti tutti i controlli
 window.addEventListener('load', async () => {
     var logintime = new Date();
+    //Alcune info generali
     document.getElementById('room').innerText = "Stai collaborando nella stanza: " + params.room;
     document.getElementById('user').innerText = "Benvenuto " + params.username + "!";
     document.getElementById('accesstime').innerText = "Ultimo login: " + logintime.toUTCString();
     const ydoc = new Y.Doc()
+    //Creazione collegamento tra peer basato su stesso nome stanza
     const provider = new WebrtcProvider(
         params.room,
         ydoc
@@ -29,14 +32,18 @@ window.addEventListener('load', async () => {
     editorContainer.setAttribute('id', 'editor')
     document.body.insertBefore(editorContainer, null)
 
+    //Creo l'editor usando il mode markdown (Formato di note gestite da Joplin)
     const editor = CodeMirror(editorContainer, {
         mode: 'markdown',
         lineNumbers: true
     })
 
+
     const binding = new CodemirrorBinding(ytext, editor, provider.awareness)
     binding.awareness.setLocalStateField('user', { color: '#008833', name: username });
     const connectBtn = /** @type {HTMLElement} */ (document.getElementById('y-connect-btn'))
+
+    //Al click del bottone disconnetti l'utente si disconnette dalla stanza
     connectBtn.addEventListener('click', () => {
         if (provider.shouldConnect) {
             provider.disconnect()
@@ -48,9 +55,13 @@ window.addEventListener('load', async () => {
       })
 
     console.log(params)
-    //Recuperiamo le note da Joplin se il token Ë immesso
+    //Recuperiamo le note da Joplin se il token √® immesso
     if (params.token != undefined) {
-        console.log("Il token Ë: " + params.token);
+        let textarea = document.createElement('textarea');
+        textarea.id = 'title';
+        textarea.style = "border: 2px solid #ccc; width:100%";
+        document.body.insertBefore(textarea, editorContainer);
+        console.log("Il token √®: " + params.token);
         //Aggiungo alla schermata principale i due bottoni di controllo 
         // per caricare la nota selezionata o salvare la nota modificata
         //nel Joplin locale
@@ -85,6 +96,8 @@ window.addEventListener('load', async () => {
             xhr.send();
         })
         response = JSON.parse(response);
+        //Vengono creati dei radio button associati a ogni nota presente su Joplin
+        //Affinch√® sia riconoscibile la nota che l'utente vuole modificare
         let notelist = document.getElementById("noteslist");
         for (let i = 0; i < response.items.length; i++) {
             let div = document.createElement('div');
@@ -125,7 +138,7 @@ window.addEventListener('load', async () => {
             let res = await new Promise(resolve => {
                 let itemtoload = document.querySelector("input[name=select]:checked") == null ? -1 : document.querySelector("input[name=select]:checked").id
 
-                //In questo caso la nota Ë nuova e va salvata
+                //In questo caso la nota √® nuova e va salvata
                 if (itemtoload == -1) {
 
                     let newValue = JSON.stringify({ 'body': editor.getValue(), 'title': document.getElementById('title').value });
@@ -143,6 +156,7 @@ window.addEventListener('load', async () => {
                     xhr.send(newValue);
 
                 }
+                //altrimenti va aggiornata
                 else {
                     let newValue = JSON.stringify({ 'body': editor.getValue(), 'title': document.getElementById('title').value });
 
@@ -169,7 +183,7 @@ window.addEventListener('load', async () => {
 
     }
     else {
-        console.log("Il token non Ë definito");
+        console.log("Il token non √® definito");
     }
     
       // @ts-ignore
@@ -177,6 +191,3 @@ window.addEventListener('load', async () => {
 
  
 })
-
-
-
