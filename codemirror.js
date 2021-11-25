@@ -25,8 +25,7 @@ window.addEventListener('load', async () => {
     const provider = new WebsocketProvider(
         params.room,
         ydoc,
-        { signaling: ['ws://localhost:4444'] })
-
+        { signaling: ['ws://localhost:4444'] }
 
     )
     const ytext = ydoc.getText('codemirror')
