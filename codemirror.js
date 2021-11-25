@@ -3,7 +3,7 @@
 // @ts-ignore
 import CodeMirror from 'codemirror'
 import * as Y from 'yjs'
-import { WebsocketProvider } from 'y-websocket'
+import { WebrtcProvider } from 'y-webrtc'
 import { CodemirrorBinding } from 'y-codemirror'
 import 'codemirror/mode/markdown/markdown.js'
 
@@ -23,9 +23,10 @@ window.addEventListener('load', async () => {
     const ydoc = new Y.Doc()
     //Creazione collegamento tra peer basato su stesso nome stanza
     const provider = new WebsocketProvider(
-        'wss://localhost:1234',
         params.room,
-        ydoc
+        ydoc,
+        { signaling: ['ws://localhost:4444'] })
+
 
     )
     const ytext = ydoc.getText('codemirror')
