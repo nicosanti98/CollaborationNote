@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Yjs ❤ Atlaskit",
   "scripts": {
-    "build": "webpack --mode=production && PORT=1234 npx y-websocket-server",
+    "build": "webpack --mode=production && PORT=4444 node ./bin/server.js",
     "dist": "webpack serve",
     "start": "node server.js"
   },
