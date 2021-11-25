@@ -3,7 +3,7 @@
 // @ts-ignore
 import CodeMirror from 'codemirror'
 import * as Y from 'yjs'
-import { WebsocketProvider } from 'y-websocketprovider'
+import { WebsocketProvider } from 'y-websocket'
 import { CodemirrorBinding } from 'y-codemirror'
 import 'codemirror/mode/markdown/markdown.js'
 
