@@ -23,9 +23,9 @@ window.addEventListener('load', async () => {
     const ydoc = new Y.Doc()
     //Creazione collegamento tra peer basato su stesso nome stanza
     const provider = new WebsocketProvider(
+        'ws://localchost:1234',
         params.room,
-        ydoc,
-        { signaling: ['ws://localhost:4444'] }
+        ydoc
 
     )
     const ytext = ydoc.getText('codemirror')
