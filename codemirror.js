@@ -24,7 +24,9 @@ window.addEventListener('load', async () => {
     //Creazione collegamento tra peer basato su stesso nome stanza
     const provider = new WebrtcProvider(
         params.room,
-        ydoc
+        ydoc,
+       { signaling: ['wss://y-webrtc-ckynwnzncc.now.sh', 'ws://localhost:4444'] }
+
     )
     const ytext = ydoc.getText('codemirror')
     const editorContainer = document.createElement('div')
