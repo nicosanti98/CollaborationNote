@@ -23,7 +23,7 @@ window.addEventListener('load', async () => {
     const ydoc = new Y.Doc()
     //Creazione collegamento tra peer basato su stesso nome stanza
     const provider = new WebsocketProvider(
-        'wss://collaborationnote.herokuapp.com/',
+        'wss://demos.yjs.dev',
         params.room,
         ydoc
 
