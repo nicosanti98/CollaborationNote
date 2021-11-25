@@ -3,7 +3,7 @@
 // @ts-ignore
 import CodeMirror from 'codemirror'
 import * as Y from 'yjs'
-import { WebrtcProvider } from 'y-webrtc'
+import { WebsocketProvider } from 'y-websocketprovider'
 import { CodemirrorBinding } from 'y-codemirror'
 import 'codemirror/mode/markdown/markdown.js'
 
@@ -22,10 +22,10 @@ window.addEventListener('load', async () => {
     document.getElementById('accesstime').innerText = "Ultimo login: " + logintime.toUTCString();
     const ydoc = new Y.Doc()
     //Creazione collegamento tra peer basato su stesso nome stanza
-    const provider = new WebrtcProvider(
+    const provider = new WebsocketProvider(
+        wss://collaborationnote.herokuapp.com/
         params.room,
-        ydoc,
-       { signaling: ['wss://y-webrtc-ckynwnzncc.now.sh', 'ws://localhost:4444'] }
+        ydoc
 
     )
     const ytext = ydoc.getText('codemirror')
