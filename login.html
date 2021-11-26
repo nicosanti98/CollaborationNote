@@ -71,7 +71,7 @@
 
             //Controllo che il token Joplin sia valido
             $.ajax({
-                url: "http://localhost:41184/notes?token=" + document.getElementById("accesstoken").value,
+                url: "https://localhost:41184/notes?token=" + document.getElementById("accesstoken").value,
                 crossDomain: true,
                 success: function (data) {
                     window.location.href = "codemirror.html?room=" + document.getElementById('room').value + "&token=" + document.getElementById('accesstoken').value + "&username=" + document.getElementById('username').value;
